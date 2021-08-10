@@ -1,0 +1,13 @@
+{
+    "name": "quasilyte/kphp-uuid",
+    "description": "A simple UUID generation package for KPHP",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {"Quasilyte\\KPHP\\Uuid\\": "src/"}
+    },
+    "require-dev": {
+        "quasilyte/kphpunit": "dev-master"
+    }
+}
