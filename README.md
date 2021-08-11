@@ -5,7 +5,7 @@
 > **WARNING**: this is not a real UUID library.
 > It's just an example project for my KPHP testing/benchmarking article.
 
-Installation via composer:
+Installation via composer (published at [packagist.org/packages/quasilyte/kphp-uuid](https://packagist.org/packages/quasilyte/kphp-uuid)):
 
 ```bash
 $ composer require quasilyte/kphp-uuid:dev-master
