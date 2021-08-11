@@ -1,3 +1,5 @@
+![Build Status](https://github.com/quasilyte/kphp-uuid/workflows/PHP/badge.svg)
+
 ## KPHP UUID demo library
 
 > **WARNING**: this is not a real UUID library.
