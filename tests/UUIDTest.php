@@ -3,18 +3,17 @@
 use PHPUnit\Framework\TestCase;
 use Quasilyte\KPHP\Uuid\UUID;
 
-#ifndef KPHP
-define('kphp', 0);
-if (false)
-#endif
-  define('kphp', 1);
-
 class UUIDTest extends TestCase {
     public function testUnique() {
-        for ($i = 0; $i < 10; $i++) {
-            $this->assertNotSame(UUID::v4(), UUID::v4());
-            $this->assertNotSame(UUID::v4fast(), UUID::v4fast());
+        $set = [];
+        $set2 = [];
+        $n = 10;
+        for ($i = 0; $i < $n; $i++) {
+            $set[UUID::v4()] = true;
+            $set2[UUID::v4fast()] = true;
         }
+        $this->assertSame(count($set), $n);
+        $this->assertSame(count($set2), $n);
     }
 
     public function testLength() {
@@ -22,14 +21,17 @@ class UUIDTest extends TestCase {
         $this->assertSame(strlen(UUID::v4fast()), 36);
     }
 
-    public function testSeeded() {
-        mt_srand(1349);
-        if (kphp === 1) {
-            $this->assertSame(UUID::v4(),     '202e62fd-707b-428a-9a22-4a6b8ab6dfe6');
-            $this->assertSame(UUID::v4fast(), '21155721-a9e6-4b39-92f0-a08159c1c869');
-        } else {
-            $this->assertSame(UUID::v4(),     'eb12137e-7711-4aa4-b7c2-3ca6e0e3e59b');
-            $this->assertSame(UUID::v4fast(), 'b00214ff-5735-4fb7-b6b6-a42702813b7e');
+    public function testValid() {
+        $example = 'f37ac10b-58cc-4372-a567-0e02b2c3d170';
+        $this->assertTrue(self::isValid($example));
+        for ($i = 0; $i < 100; $i++) {
+            $this->assertTrue(self::isValid(UUID::v4()));
+            $this->assertTrue(self::isValid(UUID::v4fast()));
         }
+    }
+
+    private static function isValid(string $uuid): bool {
+        $w = '[0-9a-f]';
+        return preg_match("/^$w{8}-$w{4}-4$w{3}-[89ab]$w{3}-$w{12}$/", $uuid) === 1;
     }
 }

@@ -31,12 +31,12 @@ class UUID {
      * The randomness is lowered.
      */
     public static function v4fast(): string {
-        return sprintf('%08x-%04x-%04x-%04x-%12x',
+        return sprintf('%08x-%04x-%04x-%04x-%08x%04x',
             mt_rand(0, 0xffffffff),
             mt_rand(0, 0xffff),
             mt_rand(0, 0x0fff) | 0x4000,
             mt_rand(0, 0x3fff) | 0x8000,
-            mt_rand(0, 0xffffffffffff)
+            mt_rand(0, 0xffffffff), mt_rand(0, 0xffff)
         );
     }
 }
