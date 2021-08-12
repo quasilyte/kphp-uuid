@@ -24,6 +24,7 @@ class UUIDTest extends TestCase {
     public function testValid() {
         $example = 'f37ac10b-58cc-4372-a567-0e02b2c3d170';
         $this->assertTrue(self::isValid($example));
+        $this->assertFalse(self::isValid('foo'));
         for ($i = 0; $i < 100; $i++) {
             $this->assertTrue(self::isValid(UUID::v4()));
             $this->assertTrue(self::isValid(UUID::v4fast()));
