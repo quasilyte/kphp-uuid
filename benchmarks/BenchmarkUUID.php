@@ -2,7 +2,7 @@
 
 use Quasilyte\KPHP\Uuid\UUID;
 
-class UUIDBenchmark {
+class BenchmarkUUID {
     public function benchmarkV4() {
         return UUID::v4();
     }
