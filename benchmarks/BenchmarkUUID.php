@@ -7,7 +7,7 @@ class BenchmarkUUID {
         return UUID::v4();
     }
 
-    public function benchmarkV4Fast() {
-        return UUID::v4fast();
+    public function benchmarkV4nosprintf() {
+        return UUID::v4nosprintf();
     }
 }

@@ -10,7 +10,7 @@ class UUIDTest extends TestCase {
         $n = 10;
         for ($i = 0; $i < $n; $i++) {
             $set[UUID::v4()] = true;
-            $set2[UUID::v4fast()] = true;
+            $set2[UUID::v4nosprintf()] = true;
         }
         $this->assertSame(count($set), $n);
         $this->assertSame(count($set2), $n);
@@ -18,7 +18,7 @@ class UUIDTest extends TestCase {
 
     public function testLength() {
         $this->assertSame(strlen(UUID::v4()), 36);
-        $this->assertSame(strlen(UUID::v4fast()), 36);
+        $this->assertSame(strlen(UUID::v4nosprintf()), 36);
     }
 
     public function testValid() {
@@ -27,7 +27,7 @@ class UUIDTest extends TestCase {
         $this->assertFalse(self::isValid('foo'));
         for ($i = 0; $i < 100; $i++) {
             $this->assertTrue(self::isValid(UUID::v4()));
-            $this->assertTrue(self::isValid(UUID::v4fast()));
+            $this->assertTrue(self::isValid(UUID::v4nosprintf()));
         }
     }
 

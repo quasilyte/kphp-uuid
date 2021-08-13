@@ -26,17 +26,21 @@ class UUID {
         );
     }
 
-    /**
-     * A faster version (but still slow) version of v4().
-     * The randomness is lowered.
-     */
-    public static function v4fast(): string {
-        return sprintf('%08x-%04x-%04x-%04x-%08x%04x',
-            mt_rand(0, 0xffffffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0x0fff) | 0x4000,
-            mt_rand(0, 0x3fff) | 0x8000,
-            mt_rand(0, 0xffffffff), mt_rand(0, 0xffff)
-        );
+    public static function v4nosprintf(): string {
+        $hex_fmt = fn (int $val) => str_pad(dechex($val), 4, '0');
+        return implode('', [
+            $hex_fmt(mt_rand(0, 0xffff)),
+            $hex_fmt(mt_rand(0, 0xffff)),
+            '-',
+            $hex_fmt(mt_rand(0, 0xffff)),
+            '-',
+            $hex_fmt(mt_rand(0, 0x0fff) | 0x4000),
+            '-',
+            $hex_fmt(mt_rand(0, 0x3fff) | 0x8000),
+            '-',
+            $hex_fmt(mt_rand(0, 0xffff)),
+            $hex_fmt(mt_rand(0, 0xffff)),
+            $hex_fmt(mt_rand(0, 0xffff)),
+        ]);
     }
 }
