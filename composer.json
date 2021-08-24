@@ -8,6 +8,6 @@
         "psr-4": {"Quasilyte\\KPHP\\Uuid\\": "src/"}
     },
     "require-dev": {
-        "quasilyte/kphpunit": "dev-master"
+        "vkcom/kphpunit": "dev-master"
     }
 }
